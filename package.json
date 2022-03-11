@@ -1,0 +1,28 @@
+{
+  "name": "budget-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start:dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lnguyen87/budget-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lnguyen87/budget-tracker/issues"
+  },
+  "homepage": "https://github.com/lnguyen87/budget-tracker#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^4.7.4"
+  }
+}
