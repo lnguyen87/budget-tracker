@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "start:dev": "webpack-dev-server"
+    "start:dev": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,13 @@
   },
   "homepage": "https://github.com/lnguyen87/budget-tracker#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "compression": "^1.7.4",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.5",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "webpack": "^5.70.0",
     "webpack-dev-server": "^4.7.4"
   }
 }
