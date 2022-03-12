@@ -47,9 +47,9 @@ const config = {
       analyzerMode: 'static'
     }),
     new WebpackPwaManifest({
-      name: 'Food Event',
-      short_name: 'Foodies',
-      description: 'An app that allows you to view upcoming food events.',
+      name: 'Budget Tracker',
+      short_name: 'Budget',
+      description: 'An app that allows you to create a budget.',
       start_url: '../index.html',
       background_color: '#01579b',
       theme_color: '#ffffff',
@@ -58,8 +58,8 @@ const config = {
       icons: [
         {
           src: path.resolve('assets/img/icons/icon-512x512.png'),
-          sizes: [96, 128, 192, 256, 384, 512],
-          destination: path.join('assets', 'icons')
+          sizes: [72, 96, 128, 144, 152, 192, 384, 512],
+          destination: path.join('public', 'icons')
         }
       ]
     })
