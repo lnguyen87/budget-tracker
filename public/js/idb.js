@@ -2,7 +2,7 @@
 let db;
 
 // establish a connection to IndexedDB database called 'budget_tracker' and set it to version 1
-const request = indexedDB.open('budget_tracker', 1);
+const request = indexedDB.open('new_budget', 1);
 
 request.onupgradeneeded = function(event) {
     // save a reference to the database
@@ -31,7 +31,7 @@ function saveRecord(record) {
     const transaction = db.transaction(['new_budget'], 'readwrite');
 
     // access your pending object store
-    const store = transaction.ObjectStore('new_budget');
+    const store = transaction.objectStore('new_budget');
 
     // add record to your store with add method
     store.add(record);
@@ -42,34 +42,38 @@ function checkDatabase() {
     const transaction = db.transaction(['new_budget'], 'readwrite');
     
     // access your pending object store
-    const store = transaction.ObjectStore('pending');
+    const store = transaction.objectStore('new_budget');
 
     // get all records from store and set to a variable
     const getAll = store.getAll();
 
     getAll.onsuccess = function() {
+        console.log(getAll.result)
         if (getAll.result.length > 0) {
             fetch('/api/transaction/bulk', {
                 method: 'POST',
-                body: JSON.stringify(getAll.results),
+                body: JSON.stringify(getAll.result),
                 headers: {
                     Accept: 'application/json, textplain, */*',
                     'Content-Type': 'application/json'
                 }
             })
             .then(response => response.json())
-            .then(() => {
+            .then(serverResponse => {
+                if (serverResponse.message) {
+                    throw new Error(serverResponse);
+                }
                 // if successful, open a transaction on your pending db
                 const transaction = db.transaction(['new_budget'], 'readwrite');
 
                 // accesss your pending object store
-                const store = transaction.ObjectStore('pending');
+                const store = transaction.objectStore('new_budget');
 
                 // clear all itmes in your store
                 store.clear();
             })
             .catch(err => {
-                saveRecord();
+                console.log(err);
             });
         }
     };
